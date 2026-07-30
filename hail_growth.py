@@ -1,7 +1,12 @@
 # ================================================================
 # hail_growth.py (dinámica ajustada para caída realista con RK4)
 # ================================================================
-from .cloud_model import CloudProfile
+try:
+    # Cuando se importa como parte del paquete completo.
+    from .cloud_model import CloudProfile
+except ImportError:
+    # Cuando se ejecuta desde la raíz del repositorio.
+    from cloud_model import CloudProfile
 import numpy as np
 
 def simulate_trajectory(profile: CloudProfile,
