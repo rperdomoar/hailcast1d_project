@@ -7,23 +7,29 @@ from hailcast2d.sounding_profile import SoundingProfile
 
 def sample_sounding():
     return SoundingProfile(
-        pressure_hpa=[
-            1000, 925, 850, 700, 500, 400, 300, 250, 200
+                pressure_hpa=[
+            1000, 925, 850, 700, 500, 400,
+            300, 250, 200, 150, 100,
         ],
         height_m=[
-            100, 750, 1500, 3000, 5600, 7200, 9200, 10300, 11800
+            100, 750, 1500, 3000, 5600, 7200,
+            9200, 10300, 11800, 13700, 16200,
         ],
         temperature_c=[
-            30, 24, 18, 4, -12, -24, -40, -49, -56
+            30, 24, 18, 4, -12, -24,
+            -40, -49, -56, -58, -55,
         ],
         dewpoint_c=[
-            22, 18, 14, -2, -20, -32, -48, -58, -65
+            22, 18, 14, -2, -20, -32,
+            -48, -58, -65, -72, -78,
         ],
         u_wind_ms=[
-            2, 5, 8, 12, 18, 22, 28, 32, 36
+            2, 5, 8, 12, 18, 22,
+            28, 32, 36, 39, 42,
         ],
         v_wind_ms=[
-            1, 2, 3, 5, 8, 10, 12, 14, 16
+            1, 2, 3, 5, 8, 10,
+            12, 14, 16, 17, 18,
         ],
     )
 
@@ -34,6 +40,7 @@ class TestSoundingProfile(unittest.TestCase):
         sounding = sample_sounding()
         summary = sounding.summary()
 
+        self.assertIsNotNone(summary["el_height_m"])
         self.assertGreaterEqual(summary["cape_jkg"], 0.0)
         self.assertGreaterEqual(summary["ideal_wmax_ms"], 0.0)
         self.assertGreater(summary["bulk_shear_0_6km_ms"], 0.0)
