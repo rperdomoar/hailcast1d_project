@@ -64,7 +64,7 @@ class TestSoundingCloudProfile(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             SoundingCloudProfile(sounding)
-            
+
 
 if __name__ == "__main__":
     unittest.main()
