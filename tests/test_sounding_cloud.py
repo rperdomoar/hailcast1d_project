@@ -34,6 +34,31 @@ class TestSoundingCloudProfile(unittest.TestCase):
         self.assertAlmostEqual(cloud.temperature(0.0), 303.15)
         self.assertAlmostEqual(cloud.pressure(0.0), 1000.0)
 
+    def test_cloud_top_is_equilibrium_level_agl(self):
+        sounding = sample_sounding()
+        cloud = SoundingCloudProfile(sounding)
+
+        expected_cloud_top = (
+            sounding.el_height_m - sounding.height_m[0]
+        )
+
+        self.assertAlmostEqual(cloud.z_max, expected_cloud_top)
+        self.assertAlmostEqual(
+            cloud.profile_top_m,
+            sounding.height_m[-1] - sounding.height_m[0],
+        )
+        self.assertLess(cloud.z_max, cloud.profile_top_m)
+
+    def test_updraft_and_lwc_are_zero_at_and_above_cloud_top(self):
+        cloud = SoundingCloudProfile(sample_sounding())
+
+        heights = np.asarray(
+            [cloud.z_max, cloud.z_max + 100.0]
+        )
+
+        np.testing.assert_allclose(cloud.w(heights), 0.0)
+        np.testing.assert_allclose(cloud.lwc(heights), 0.0)
+
     def test_air_density_is_positive(self):
         cloud = SoundingCloudProfile(sample_sounding())
 

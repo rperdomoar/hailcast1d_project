@@ -62,7 +62,25 @@ class SoundingCloudProfile:
         )
 
         self.z_min = 0.0
-        self.z_max = float(self.height_agl_m[-1])
+        # El radiosondeo continúa por encima de la nube hasta la
+        # estratosfera. Se conservan ambos límites por separado:
+        # ``profile_top_m`` describe la observación atmosférica completa,
+        # mientras que ``z_max`` representa el techo físico de la nube.
+        self.profile_top_m = float(self.height_agl_m[-1])
+        self.z_max = float(
+            sounding.el_height_m - self.surface_elevation_m
+        )
+
+        if self.z_max <= self.z_min:
+            raise ValueError(
+                "El nivel de equilibrio debe encontrarse sobre la "
+                "superficie."
+            )
+        if self.z_max > self.profile_top_m:
+            raise ValueError(
+                "El nivel de equilibrio supera el techo observado "
+                "del radiosondeo."
+            )
 
         self._build_pressure_profile()
         self._build_buoyancy_and_updraft()
@@ -211,6 +229,10 @@ class SoundingCloudProfile:
             self.updraft_efficiency * ideal_updraft
         )
 
+        # Por encima del nivel de equilibrio la parcela deja de definir
+        # la corriente ascendente convectiva utilizada por HAILCAST.
+        self.updraft_ms[self.height_agl_m > self.z_max] = 0.0
+
     def _build_liquid_water_profile(self):
         """
         Estima agua líquida mediante condensación adiabática.
@@ -277,6 +299,10 @@ class SoundingCloudProfile:
         )
         lwc[self.height_agl_m < lcl_agl] = 0.0
 
+        # El agua condensada calculada por la parcela no se considera
+        # disponible para acreción fuera del límite superior de la nube.
+        lwc[self.height_agl_m > self.z_max] = 0.0
+
         self.liquid_fraction = liquid_fraction
         self.lwc_kgm3 = np.maximum(lwc, 0.0)
 
@@ -321,6 +347,7 @@ class SoundingCloudProfile:
     def w(self, z):
         """Velocidad vertical efectiva en m/s."""
 
+        z_array = np.asarray(z)
         values = np.interp(
             z,
             self.height_agl_m,
@@ -328,18 +355,29 @@ class SoundingCloudProfile:
             left=0.0,
             right=0.0,
         )
+        values = np.where(
+            (z_array < self.z_min) | (z_array >= self.z_max),
+            0.0,
+            values,
+        )
 
         return self._scalar_or_array(z, values)
 
     def lwc(self, z):
         """Contenido de agua líquida disponible en kg/m³."""
 
+        z_array = np.asarray(z)
         values = np.interp(
             z,
             self.height_agl_m,
             self.lwc_kgm3,
             left=0.0,
             right=0.0,
+        )
+        values = np.where(
+            (z_array < self.z_min) | (z_array >= self.z_max),
+            0.0,
+            values,
         )
 
         return self._scalar_or_array(z, values)
@@ -380,6 +418,7 @@ class SoundingCloudProfile:
             "surface_elevation_m": self.surface_elevation_m,
             "z_min_m": self.z_min,
             "z_max_m": self.z_max,
+            "profile_top_m": self.profile_top_m,
             "z_center_m": self.z_center,
             "updraft_efficiency": self.updraft_efficiency,
             "lwc_efficiency": self.lwc_efficiency,
