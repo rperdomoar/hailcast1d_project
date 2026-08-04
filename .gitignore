@@ -16,3 +16,7 @@ outputs/*
 # Editores
 .vscode/
 .idea/
+
+# Datos meteorológicos locales grandes
+data/igra/
+data/soundings/
