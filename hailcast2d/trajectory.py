@@ -40,6 +40,33 @@ def drag_coefficient(
 
     return 0.44
 
+def gaussian_updraft_factor(
+    x_m: float,
+    center_x_m: float,
+    radius_m: float,
+) -> float:
+    """
+    Calcula la fracción local de la corriente ascendente.
+
+    El radio representa la distancia desde el centro donde la intensidad
+    se reduce a exp(-1), aproximadamente el 36.8 %.
+    """
+
+    radius_m = float(radius_m)
+
+    if not np.isfinite(radius_m) or radius_m <= 0.0:
+        raise ValueError(
+            "updraft_radius_m debe ser positivo y finito."
+        )
+
+    normalized_distance = (
+        (float(x_m) - float(center_x_m))
+        / radius_m
+    )
+
+    return float(
+        np.exp(-(normalized_distance**2))
+    )
 
 def _horizontal_acceleration(
     vx: float,

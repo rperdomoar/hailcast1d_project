@@ -9,6 +9,10 @@ from cloud_model import CloudProfile
 from hail_growth import simulate_trajectory
 from hailcast2d.trajectory import simulate_trajectory_2d
 from hailcast2d.wind_profile import HorizontalWindProfile
+from hailcast2d.trajectory import (
+    gaussian_updraft_factor,
+    simulate_trajectory_2d,
+)
 
 
 class TestTrajectory2D(unittest.TestCase):
@@ -134,6 +138,37 @@ class TestTrajectory2D(unittest.TestCase):
             self.assertTrue(
                 np.all(np.isfinite(result[variable])),
                 msg=f"{variable} contiene valores no finitos",
+            )
+
+    def test_gaussian_updraft_factor(self):
+        radius = 3000.0
+
+        self.assertAlmostEqual(
+            gaussian_updraft_factor(0.0, 0.0, radius),
+            1.0,
+        )
+        self.assertAlmostEqual(
+            gaussian_updraft_factor(radius, 0.0, radius),
+            np.exp(-1.0),
+        )
+        self.assertAlmostEqual(
+            gaussian_updraft_factor(-radius, 0.0, radius),
+            np.exp(-1.0),
+        )
+        self.assertLess(
+            gaussian_updraft_factor(
+                2.0 * radius,
+                0.0,
+                radius,
+            ),
+            0.02,
+        )
+
+        with self.assertRaises(ValueError):
+            gaussian_updraft_factor(
+                0.0,
+                0.0,
+                0.0,
             )
 
 if __name__ == "__main__":
