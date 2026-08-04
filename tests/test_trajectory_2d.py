@@ -171,5 +171,53 @@ class TestTrajectory2D(unittest.TestCase):
                 0.0,
             )
 
+    def test_finite_updraft_uses_coupled_stable_integration(self):
+        wind = HorizontalWindProfile.constant(15.0)
+
+        result = simulate_trajectory_2d(
+            profile=self.profile,
+            wind_profile=wind,
+            D0_mm=0.9,
+            z0=4000.0,
+            T0_K=263.15,
+            dt=0.5,
+            t_max=10.0,
+            updraft_center_x_m=0.0,
+            updraft_radius_m=3000.0,
+        )
+
+        self.assertEqual(
+            result["coupling"],
+            "two_way_finite_updraft",
+        )
+
+        for variable in (
+            "x",
+            "vx",
+            "height",
+            "velocity",
+            "mass",
+            "radius",
+            "updraft_factor",
+            "vertical_air_velocity",
+        ):
+            self.assertTrue(
+                np.all(np.isfinite(result[variable])),
+                msg=f"{variable} contiene valores no finitos",
+            )
+
+        self.assertAlmostEqual(
+            result["updraft_factor"][0],
+            1.0,
+        )
+        self.assertLess(
+            result["updraft_factor"][-1],
+            result["updraft_factor"][0],
+        )
+        self.assertGreater(
+            result["x"][-1],
+            result["x"][0],
+        )
+
 if __name__ == "__main__":
     unittest.main()
