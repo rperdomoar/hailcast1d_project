@@ -232,10 +232,27 @@ def _calculate_impact(result, profile) -> dict:
     )[0]
 
     if crossing.size == 0:
+        final_mass = float(result["mass"][-1])
+        final_radius = float(result["radius"][-1])
+        final_vx = float(result["vx"][-1])
+        final_vz = float(result["velocity"][-1])
+
         return {
             "impacted_ground": False,
             "termination_reason": (
                 "t_max_or_no_ground_crossing"
+            ),
+            "time_s": float(result["time"][-1]),
+            "x_m": float(result["x"][-1]),
+            "height_m": float(result["height"][-1]),
+            "vx_ms": final_vx,
+            "vz_ms": final_vz,
+            "speed_ms": float(
+                np.hypot(final_vx, final_vz)
+            ),
+            "mass_kg": final_mass,
+            "diameter_mm": float(
+                2.0 * final_radius * 1000.0
             ),
         }
 
