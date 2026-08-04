@@ -106,6 +106,35 @@ class TestTrajectory2D(unittest.TestCase):
 
         self.assertFalse(result["impact"]["impacted_ground"])
 
+    def test_small_embryo_is_stable_with_automatic_substeps(self):
+        """Los embriones pequeños deben permanecer numéricamente estables."""
+
+        wind = HorizontalWindProfile.constant(15.0)
+
+        result = simulate_trajectory_2d(
+            profile=self.profile,
+            wind_profile=wind,
+            D0_mm=0.9,
+            z0=4000.0,
+            T0_K=263.15,
+            t_max=2.0,
+            dt=0.5,
+        )
+
+        variables = (
+            "x",
+            "vx",
+            "height",
+            "velocity",
+            "mass",
+            "radius",
+        )
+
+        for variable in variables:
+            self.assertTrue(
+                np.all(np.isfinite(result[variable])),
+                msg=f"{variable} contiene valores no finitos",
+            )
 
 if __name__ == "__main__":
     unittest.main()
