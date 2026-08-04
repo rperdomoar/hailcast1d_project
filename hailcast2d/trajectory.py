@@ -187,8 +187,8 @@ def _simulate_one_way(
 
 def _simulate_coupled(
     profile, wind_profile, D0_mm, z0, T0_K, x0, vx0,
-    updraft_center_x_m, updraft_radius_m, max_substep_s,
-    trajectory_kwargs,
+    updraft_center_x_m, updraft_radius_m, storm_motion_ms,
+    max_substep_s, trajectory_kwargs,
 ):
     defaults = {
         "v0": 0.0, "t_max": 3600.0, "dt": 0.1,
@@ -230,7 +230,15 @@ def _simulate_coupled(
         m_safe = max(float(m), eps)
         p_safe = float(np.clip(porosity, pms["p_min"], pms["p_max"]))
         z_env = max(float(z), float(profile.z_min))
-        factor = gaussian_updraft_factor(x, updraft_center_x_m, updraft_radius_m)
+        moving_center = (
+            updraft_center_x_m
+            + storm_motion_ms * _time
+        )
+        factor = gaussian_updraft_factor(
+            x,
+            moving_center,
+            updraft_radius_m,
+        )
         w_air = float(profile.w(z_env)) * factor
         lwc = float(profile.lwc(z_env)) * factor
         temp_air = float(profile.temperature(z_env))
@@ -279,32 +287,83 @@ def _simulate_coupled(
         )
         return np.array([dm, dvz, vz, dtemp, dp, drho, dmemory, vx, dvx])
 
-    records = {key: [] for key in (
-        "time", "mass", "radius", "height", "velocity", "temperature",
-        "density", "porosity", "v_terminal", "x", "vx",
-        "horizontal_wind", "updraft_factor", "vertical_air_velocity",
-    )}
+    records = {
+        key: []
+        for key in (
+            "time",
+            "mass",
+            "radius",
+            "height",
+            "velocity",
+            "temperature",
+            "density",
+            "porosity",
+            "v_terminal",
+            "x",
+            "vx",
+            "horizontal_wind",
+            "updraft_factor",
+            "vertical_air_velocity",
+            "updraft_center_x",
+        )
+    }
 
     def record(time_value):
         radius = radius_from(state)
-        z_env = max(float(state[2]), float(profile.z_min))
-        factor = gaussian_updraft_factor(state[7], updraft_center_x_m, updraft_radius_m)
+        z_env = max(
+            float(state[2]),
+            float(profile.z_min),
+        )
+
+        moving_center = (
+            updraft_center_x_m
+            + storm_motion_ms * time_value
+        )
+        factor = gaussian_updraft_factor(
+            state[7],
+            moving_center,
+            updraft_radius_m,
+        )
+
         w_air = float(profile.w(z_env)) * factor
         rho_air = float(profile.air_density(z_env))
-        rel = state[1] - w_air
-        re = rho_air * max(abs(rel), 1e-3) * 2.0*radius / mu
-        cd = drag_coefficient(re)
-        terminal = np.sqrt(
-            2.0*max(state[0], eps)*pms["g"] /
-            (rho_air*np.pi*radius**2*cd + eps)
+        relative_vertical_velocity = (
+            state[1] - w_air
         )
+
+        reynolds = (
+            rho_air
+            * max(
+                abs(relative_vertical_velocity),
+                1e-3,
+            )
+            * 2.0
+            * radius
+            / mu
+        )
+        cd = drag_coefficient(reynolds)
+        terminal = np.sqrt(
+            2.0
+            * max(state[0], eps)
+            * pms["g"]
+            / (
+                rho_air
+                * np.pi
+                * radius**2
+                * cd
+                + eps
+            )
+        )
+        cd = drag_coefficient(reynolds)
         values = {
             "time": time_value, "mass": state[0], "radius": radius,
             "height": state[2], "velocity": state[1], "temperature": state[3],
             "density": state[5], "porosity": state[4], "v_terminal": terminal,
             "x": state[7], "vx": state[8],
             "horizontal_wind": wind_profile.velocity(z_env),
-            "updraft_factor": factor, "vertical_air_velocity": w_air,
+                        "updraft_factor": factor,
+            "vertical_air_velocity": w_air,
+            "updraft_center_x": moving_center,
         }
         for key, value in values.items():
             records[key].append(float(value))
@@ -337,22 +396,39 @@ def _simulate_coupled(
     result = {key: np.asarray(value, dtype=float) for key, value in records.items()}
     result["D0_init"] = D0_mm
     result["coupling"] = "two_way_finite_updraft"
-    result["updraft_center_x_m"] = float(updraft_center_x_m)
-    result["updraft_radius_m"] = float(updraft_radius_m)
+    result["updraft_center_x_m"] = float(
+        updraft_center_x_m
+    )
+    result["updraft_radius_m"] = float(
+        updraft_radius_m
+    )
+    result["storm_motion_ms"] = float(
+        storm_motion_ms
+    )
     return result
 
 
 def simulate_trajectory_2d(
-    profile, wind_profile: HorizontalWindProfile, D0_mm: float,
-    z0: float, T0_K: float, x0: float = 0.0, vx0: float = 0.0,
+    profile,
+    wind_profile: HorizontalWindProfile,
+    D0_mm: float,
+    z0: float,
+    T0_K: float,
+    x0: float = 0.0,
+    vx0: float = 0.0,
     max_horizontal_substep_s: float = 0.05,
     updraft_center_x_m: float = 0.0,
     updraft_radius_m: float | None = None,
+    storm_motion_ms: float = 0.0,
     **trajectory_kwargs,
 ):
     """Simula una trayectoria 2D; un radio activa acoplamiento completo."""
     if not isinstance(wind_profile, HorizontalWindProfile):
         raise TypeError("wind_profile debe ser HorizontalWindProfile.")
+    if not np.isfinite(storm_motion_ms):
+        raise ValueError(
+            "storm_motion_ms debe ser finito."
+        )
     if updraft_radius_m is None:
         result = _simulate_one_way(
             profile, wind_profile, D0_mm, z0, T0_K, x0, vx0,
@@ -360,10 +436,20 @@ def simulate_trajectory_2d(
         )
     else:
         result = _simulate_coupled(
-            profile, wind_profile, D0_mm, z0, T0_K, x0, vx0,
-            updraft_center_x_m, updraft_radius_m,
-            max_horizontal_substep_s, trajectory_kwargs,
+            profile,
+            wind_profile,
+            D0_mm,
+            z0,
+            T0_K,
+            x0,
+            vx0,
+            updraft_center_x_m,
+            updraft_radius_m,
+            storm_motion_ms,
+            max_horizontal_substep_s,
+            trajectory_kwargs,
         )
+    result["storm_motion_ms"] = float(storm_motion_ms)
     result["impact"] = _calculate_impact(result, profile)
     result["model_dimension"] = "2D_xz"
     result["max_horizontal_substep_s"] = float(max_horizontal_substep_s)

@@ -63,6 +63,31 @@ def parse_arguments():
         type=Path,
         default=Path("outputs/cordoba_20210127_observed"),
     )
+    parser.add_argument(
+        "--updraft-center-x-m",
+        type=float,
+        default=0.0,
+        help=(
+            "Centro horizontal de la corriente ascendente, en metros."
+        ),
+    )
+    parser.add_argument(
+        "--updraft-radius-m",
+        type=float,
+        default=3000.0,
+        help=(
+            "Radio gaussiano de la corriente ascendente, en metros."
+        ),
+    )
+    parser.add_argument(
+        "--storm-motion-ms",
+        type=float,
+        default=0.8872432975435255,
+        help=(
+            "Traslación zonal estimada del núcleo tormentoso, en m/s."
+        ),
+    )
+
     parser.add_argument("--max-plotted-trajectories", type=int, default=30)
     return parser.parse_args()
 
@@ -88,6 +113,22 @@ def run_case(args, cloud, wind):
         raise ValueError(
             "--z0-m debe encontrarse dentro de la nube observada."
         )
+    if not np.isfinite(args.updraft_center_x_m):
+        raise ValueError(
+            "--updraft-center-x-m debe ser finito."
+        )
+
+    if (
+        not np.isfinite(args.updraft_radius_m)
+        or args.updraft_radius_m <= 0.0
+    ):
+        raise ValueError(
+            "--updraft-radius-m debe ser positivo y finito."
+        )
+    if not np.isfinite(args.storm_motion_ms):
+        raise ValueError(
+            "--storm-motion-ms debe ser finito."
+        )
 
     # La temperatura inicial se toma directamente del ambiente observado
     # en la altura de inicio, en lugar de imponer un valor independiente.
@@ -107,6 +148,9 @@ def run_case(args, cloud, wind):
         seed=args.seed,
         dt=args.dt,
         t_max=args.t_max,
+        updraft_center_x_m=args.updraft_center_x_m,
+        updraft_radius_m=args.updraft_radius_m,
+        storm_motion_ms=args.storm_motion_ms,
     )
 
     return ensemble, initial_temperature_k
