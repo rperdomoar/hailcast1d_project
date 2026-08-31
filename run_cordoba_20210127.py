@@ -49,7 +49,7 @@ def parse_arguments():
     parser.add_argument(
         "--igra-file",
         type=Path,
-        default=Path("data/igra/ARM00087344-data.txt"),
+        default=Path("data/igra/ARM00087344_20210127_12Z.txt"),
     )
     parser.add_argument("--n-members", type=int, default=100)
     parser.add_argument("--seed", type=int, default=42)
