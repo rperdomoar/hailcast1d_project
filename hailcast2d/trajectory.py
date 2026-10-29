@@ -420,6 +420,7 @@ def simulate_trajectory_2d(
     updraft_center_x_m: float = 0.0,
     updraft_radius_m: float | None = None,
     storm_motion_ms: float = 0.0,
+    physics_mode: str = "legacy",
     **trajectory_kwargs,
 ):
     """Simula una trayectoria 2D; un radio activa acoplamiento completo."""
@@ -429,7 +430,17 @@ def simulate_trajectory_2d(
         raise ValueError(
             "storm_motion_ms debe ser finito."
         )
-    if updraft_radius_m is None:
+    if physics_mode not in ("legacy", "mechanics_reference"):
+        raise ValueError("physics_mode must be legacy or mechanics_reference")
+    if physics_mode == "mechanics_reference":
+        from hailcast2d.mechanics_reference import simulate_mechanics
+        result = simulate_mechanics(
+            profile, wind_profile, D0_mm, z0, T0_K, x0=x0, vx0=vx0,
+            max_substep_s=max_horizontal_substep_s,
+            updraft_radius_m=updraft_radius_m,
+            updraft_center_x_m=updraft_center_x_m,
+            storm_motion_ms=storm_motion_ms, **trajectory_kwargs)
+    elif updraft_radius_m is None:
         result = _simulate_one_way(
             profile, wind_profile, D0_mm, z0, T0_K, x0, vx0,
             max_horizontal_substep_s, trajectory_kwargs,
@@ -451,6 +462,7 @@ def simulate_trajectory_2d(
         )
     result["storm_motion_ms"] = float(storm_motion_ms)
     result["impact"] = _calculate_impact(result, profile)
+    result["physics_mode"] = physics_mode
     result["model_dimension"] = "2D_xz"
     result["max_horizontal_substep_s"] = float(max_horizontal_substep_s)
     return result
