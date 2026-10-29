@@ -1,0 +1,86 @@
+[
+  {
+    "diameter_mm": 5.0,
+    "requested_max_step_s": 0.4,
+    "actual_max_step_s": 0.4,
+    "velocity_error_ms": 0.0035595079164547627,
+    "height_error_m": 0.0005462788521981565
+  },
+  {
+    "diameter_mm": 5.0,
+    "requested_max_step_s": 0.2,
+    "actual_max_step_s": 0.2,
+    "velocity_error_ms": 0.00017326112668314408,
+    "height_error_m": 6.109150945121655e-05
+  },
+  {
+    "diameter_mm": 5.0,
+    "requested_max_step_s": 0.1,
+    "actual_max_step_s": 0.1,
+    "velocity_error_ms": 9.583792655476486e-06,
+    "height_error_m": 4.565210474538617e-06
+  },
+  {
+    "diameter_mm": 5.0,
+    "requested_max_step_s": 0.05,
+    "actual_max_step_s": 0.05,
+    "velocity_error_ms": 5.638142468455953e-07,
+    "height_error_m": 3.0739920475753024e-07
+  },
+  {
+    "diameter_mm": 10.0,
+    "requested_max_step_s": 0.4,
+    "actual_max_step_s": 0.4,
+    "velocity_error_ms": 0.001360059818017234,
+    "height_error_m": 5.832486567669548e-05
+  },
+  {
+    "diameter_mm": 10.0,
+    "requested_max_step_s": 0.2,
+    "actual_max_step_s": 0.2,
+    "velocity_error_ms": 7.413987382065557e-05,
+    "height_error_m": 1.3611968824989162e-05
+  },
+  {
+    "diameter_mm": 10.0,
+    "requested_max_step_s": 0.1,
+    "actual_max_step_s": 0.1,
+    "velocity_error_ms": 4.328390136976168e-06,
+    "height_error_m": 1.1453239494585432e-06
+  },
+  {
+    "diameter_mm": 10.0,
+    "requested_max_step_s": 0.05,
+    "actual_max_step_s": 0.05,
+    "velocity_error_ms": 2.6148565090977627e-07,
+    "height_error_m": 8.052575140027329e-08
+  },
+  {
+    "diameter_mm": 20.0,
+    "requested_max_step_s": 0.4,
+    "actual_max_step_s": 0.4,
+    "velocity_error_ms": 0.00035876988981975444,
+    "height_error_m": 4.184146018815227e-05
+  },
+  {
+    "diameter_mm": 20.0,
+    "requested_max_step_s": 0.2,
+    "actual_max_step_s": 0.2,
+    "velocity_error_ms": 2.1152100813992547e-05,
+    "height_error_m": 5.096935637993738e-06
+  },
+  {
+    "diameter_mm": 20.0,
+    "requested_max_step_s": 0.1,
+    "actual_max_step_s": 0.1,
+    "velocity_error_ms": 1.282765705212796e-06,
+    "height_error_m": 3.96918949263636e-07
+  },
+  {
+    "diameter_mm": 20.0,
+    "requested_max_step_s": 0.05,
+    "actual_max_step_s": 0.05,
+    "velocity_error_ms": 7.896135301166396e-08,
+    "height_error_m": 2.7255737222731113e-08
+  }
+]

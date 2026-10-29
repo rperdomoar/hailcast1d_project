@@ -1,0 +1,307 @@
+{
+  "scope": "Synthetic sampling convergence only; fixed mass/density, finite 8-s cutoff; conditional impact statistics",
+  "specification": {
+    "kind": "lognormal",
+    "mean_mm": 3,
+    "std_mm": 1
+  },
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "nested_prefixes": [
+    25,
+    50,
+    100,
+    300
+  ],
+  "rows": [
+    {
+      "seed": 42,
+      "n": 25,
+      "initial_mean_mm": 2.9098973010871405,
+      "initial_p90_mm": 3.831813286493718,
+      "n_impacted": 24,
+      "impact_fraction": 0.96,
+      "impact_fraction_wilson95": [
+        0.8045552759497747,
+        0.9929039496133008
+      ],
+      "impact_mean_mm": 2.96819298076489,
+      "impact_p90_mm": 3.839405754744811,
+      "impact_mean_energy_J": 0.0007717922645558659,
+      "impact_p90_energy_J": 0.0016039892364900525
+    },
+    {
+      "seed": 42,
+      "n": 50,
+      "initial_mean_mm": 3.021250175520489,
+      "initial_p90_mm": 3.7938509452382516,
+      "n_impacted": 49,
+      "impact_fraction": 0.98,
+      "impact_fraction_wilson95": [
+        0.8950431352816304,
+        0.9964608319110235
+      ],
+      "impact_mean_mm": 3.052075669126598,
+      "impact_p90_mm": 3.801443413489345,
+      "impact_mean_energy_J": 0.0008902685857467555,
+      "impact_p90_energy_J": 0.0015430248553266826
+    },
+    {
+      "seed": 42,
+      "n": 100,
+      "initial_mean_mm": 2.888339166202412,
+      "initial_p90_mm": 3.761667692786746,
+      "n_impacted": 99,
+      "impact_fraction": 0.99,
+      "impact_fraction_wilson95": [
+        0.9455124752390653,
+        0.9982326134344526
+      ],
+      "impact_mean_mm": 2.9022536932466667,
+      "impact_p90_mm": 3.7633131770222814,
+      "impact_mean_energy_J": 0.0007404582054062112,
+      "impact_p90_energy_J": 0.0014831412425792632
+    },
+    {
+      "seed": 42,
+      "n": 300,
+      "initial_mean_mm": 2.9430387343752735,
+      "initial_p90_mm": 4.114119344446007,
+      "n_impacted": 295,
+      "impact_fraction": 0.9833333333333333,
+      "impact_fraction_wilson95": [
+        0.9615840563782944,
+        0.9928606279572277
+      ],
+      "impact_mean_mm": 2.9690120525512933,
+      "impact_p90_mm": 4.155967501136857,
+      "impact_mean_energy_J": 0.0010258992072222739,
+      "impact_p90_energy_J": 0.0021806006717610456
+    },
+    {
+      "seed": 123,
+      "n": 25,
+      "initial_mean_mm": 3.1355561499997773,
+      "initial_p90_mm": 4.270222586725676,
+      "n_impacted": 24,
+      "impact_fraction": 0.96,
+      "impact_fraction_wilson95": [
+        0.8045552759497747,
+        0.9929039496133008
+      ],
+      "impact_mean_mm": 3.208281924676165,
+      "impact_p90_mm": 4.283453417180638,
+      "impact_mean_energy_J": 0.0011076197085898487,
+      "impact_p90_energy_J": 0.002451405189366067
+    },
+    {
+      "seed": 123,
+      "n": 50,
+      "initial_mean_mm": 3.1465425504509326,
+      "initial_p90_mm": 4.343540543055801,
+      "n_impacted": 48,
+      "impact_fraction": 0.96,
+      "impact_fraction_wilson95": [
+        0.8653966212204534,
+        0.9889613473391734
+      ],
+      "impact_mean_mm": 3.2193911326104447,
+      "impact_p90_mm": 4.3843298120763485,
+      "impact_mean_energy_J": 0.0012387114693841908,
+      "impact_p90_energy_J": 0.002684722572040661
+    },
+    {
+      "seed": 123,
+      "n": 100,
+      "initial_mean_mm": 3.0487310040722067,
+      "initial_p90_mm": 4.327056198857401,
+      "n_impacted": 98,
+      "impact_fraction": 0.98,
+      "impact_fraction_wilson95": [
+        0.9299868370580063,
+        0.9944981477650318
+      ],
+      "impact_mean_mm": 3.0824157882650547,
+      "impact_p90_mm": 4.334876779481146,
+      "impact_mean_energy_J": 0.0010381865143395926,
+      "impact_p90_energy_J": 0.0025641560590120476
+    },
+    {
+      "seed": 123,
+      "n": 300,
+      "initial_mean_mm": 3.0255258564595895,
+      "initial_p90_mm": 4.3270561988574014,
+      "n_impacted": 289,
+      "impact_fraction": 0.9633333333333334,
+      "impact_fraction_wilson95": [
+        0.9355455130036123,
+        0.9794049085318193
+      ],
+      "impact_mean_mm": 3.089145963301994,
+      "impact_p90_mm": 4.367240387443279,
+      "impact_mean_energy_J": 0.0010735813930414643,
+      "impact_p90_energy_J": 0.0026383963762023972
+    },
+    {
+      "seed": 2026,
+      "n": 25,
+      "initial_mean_mm": 2.8582871137003143,
+      "initial_p90_mm": 3.5153877431805816,
+      "n_impacted": 24,
+      "impact_fraction": 0.96,
+      "impact_fraction_wilson95": [
+        0.8045552759497747,
+        0.9929039496133008
+      ],
+      "impact_mean_mm": 2.913304511253214,
+      "impact_p90_mm": 3.51707399965229,
+      "impact_mean_energy_J": 0.0006680264833926192,
+      "impact_p90_energy_J": 0.0011387376655260992
+    },
+    {
+      "seed": 2026,
+      "n": 50,
+      "initial_mean_mm": 3.232608163078566,
+      "initial_p90_mm": 4.484273550334981,
+      "n_impacted": 49,
+      "impact_fraction": 0.98,
+      "impact_fraction_wilson95": [
+        0.8950431352816304,
+        0.9964608319110235
+      ],
+      "impact_mean_mm": 3.2671946649285224,
+      "impact_p90_mm": 4.491384299237167,
+      "impact_mean_energy_J": 0.0017572135469714042,
+      "impact_p90_energy_J": 0.002938713477818679
+    },
+    {
+      "seed": 2026,
+      "n": 100,
+      "initial_mean_mm": 3.059071407420991,
+      "initial_p90_mm": 4.419618678666192,
+      "n_impacted": 97,
+      "impact_fraction": 0.97,
+      "impact_fraction_wilson95": [
+        0.915479219195973,
+        0.9897456617765851
+      ],
+      "impact_mean_mm": 3.1059528248524835,
+      "impact_p90_mm": 4.438800052921727,
+      "impact_mean_energy_J": 0.0013946979880605393,
+      "impact_p90_energy_J": 0.0028090354406087783
+    },
+    {
+      "seed": 2026,
+      "n": 300,
+      "initial_mean_mm": 3.1024179081093703,
+      "initial_p90_mm": 4.522851678151466,
+      "n_impacted": 289,
+      "impact_fraction": 0.9633333333333334,
+      "impact_fraction_wilson95": [
+        0.9355455130036123,
+        0.9794049085318193
+      ],
+      "impact_mean_mm": 3.1669672061021523,
+      "impact_p90_mm": 4.558057579576729,
+      "impact_mean_energy_J": 0.0014169734789572198,
+      "impact_p90_energy_J": 0.0031090576813162262
+    }
+  ],
+  "across_seed_summary": [
+    {
+      "n": 25,
+      "initial_mean_mm": {
+        "mean": 2.9679135215957437,
+        "min": 2.8582871137003143,
+        "max": 3.1355561499997773
+      },
+      "impact_fraction": {
+        "mean": 0.96,
+        "min": 0.96,
+        "max": 0.96
+      },
+      "impact_mean_energy_J": {
+        "mean": 0.0008491461521794447,
+        "min": 0.0006680264833926192,
+        "max": 0.0011076197085898487
+      },
+      "impact_p90_energy_J": {
+        "mean": 0.001731377363794073,
+        "min": 0.0011387376655260992,
+        "max": 0.002451405189366067
+      }
+    },
+    {
+      "n": 50,
+      "initial_mean_mm": {
+        "mean": 3.1334669630166627,
+        "min": 3.021250175520489,
+        "max": 3.232608163078566
+      },
+      "impact_fraction": {
+        "mean": 0.9733333333333333,
+        "min": 0.96,
+        "max": 0.98
+      },
+      "impact_mean_energy_J": {
+        "mean": 0.00129539786736745,
+        "min": 0.0008902685857467555,
+        "max": 0.0017572135469714042
+      },
+      "impact_p90_energy_J": {
+        "mean": 0.0023888203017286744,
+        "min": 0.0015430248553266826,
+        "max": 0.002938713477818679
+      }
+    },
+    {
+      "n": 100,
+      "initial_mean_mm": {
+        "mean": 2.99871385923187,
+        "min": 2.888339166202412,
+        "max": 3.059071407420991
+      },
+      "impact_fraction": {
+        "mean": 0.98,
+        "min": 0.97,
+        "max": 0.99
+      },
+      "impact_mean_energy_J": {
+        "mean": 0.0010577809026021143,
+        "min": 0.0007404582054062112,
+        "max": 0.0013946979880605393
+      },
+      "impact_p90_energy_J": {
+        "mean": 0.00228544424740003,
+        "min": 0.0014831412425792632,
+        "max": 0.0028090354406087783
+      }
+    },
+    {
+      "n": 300,
+      "initial_mean_mm": {
+        "mean": 3.023660832981411,
+        "min": 2.9430387343752735,
+        "max": 3.1024179081093703
+      },
+      "impact_fraction": {
+        "mean": 0.9700000000000001,
+        "min": 0.9633333333333334,
+        "max": 0.9833333333333333
+      },
+      "impact_mean_energy_J": {
+        "mean": 0.001172151359740319,
+        "min": 0.0010258992072222739,
+        "max": 0.0014169734789572198
+      },
+      "impact_p90_energy_J": {
+        "mean": 0.0026426849097598896,
+        "min": 0.0021806006717610456,
+        "max": 0.0031090576813162262
+      }
+    }
+  ]
+}

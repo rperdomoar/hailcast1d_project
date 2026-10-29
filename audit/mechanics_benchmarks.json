@@ -1,0 +1,116 @@
+{
+  "scope": "Independent fixed-mass, fixed-density, constant-Cd mechanics benchmark; not storm validation",
+  "constant_drag_fall": [
+    {
+      "diameter_mm": 5.0,
+      "dt_s": 0.2,
+      "time_s": 10,
+      "numerical_vz_ms": -10.551238435143981,
+      "analytic_vz_ms": -10.551238435788413,
+      "relative_velocity_error": 6.107643829584139e-11
+    },
+    {
+      "diameter_mm": 5.0,
+      "dt_s": 0.1,
+      "time_s": 10,
+      "numerical_vz_ms": -10.551238435753875,
+      "analytic_vz_ms": -10.551238435788413,
+      "relative_velocity_error": 3.2733319636974284e-12
+    },
+    {
+      "diameter_mm": 5.0,
+      "dt_s": 0.05,
+      "time_s": 10,
+      "numerical_vz_ms": -10.551238435786415,
+      "analytic_vz_ms": -10.551238435788413,
+      "relative_velocity_error": 1.893997047348458e-13
+    },
+    {
+      "diameter_mm": 5.0,
+      "dt_s": 0.025,
+      "time_s": 10,
+      "numerical_vz_ms": -10.551238435788292,
+      "analytic_vz_ms": -10.551238435788413,
+      "relative_velocity_error": 1.1448159930639568e-14
+    },
+    {
+      "diameter_mm": 10.0,
+      "dt_s": 0.2,
+      "time_s": 10,
+      "numerical_vz_ms": -14.921645553198482,
+      "analytic_vz_ms": -14.921645585216536,
+      "relative_velocity_error": 2.1457455079629693e-09
+    },
+    {
+      "diameter_mm": 10.0,
+      "dt_s": 0.1,
+      "time_s": 10,
+      "numerical_vz_ms": -14.921645583416947,
+      "analytic_vz_ms": -14.921645585216536,
+      "relative_velocity_error": 1.2060263730467442e-10
+    },
+    {
+      "diameter_mm": 10.0,
+      "dt_s": 0.05,
+      "time_s": 10,
+      "numerical_vz_ms": -14.921645585109845,
+      "analytic_vz_ms": -14.921645585216536,
+      "relative_velocity_error": 7.1501191928698115e-12
+    },
+    {
+      "diameter_mm": 10.0,
+      "dt_s": 0.025,
+      "time_s": 10,
+      "numerical_vz_ms": -14.921645585210042,
+      "analytic_vz_ms": -14.921645585216536,
+      "relative_velocity_error": 4.3523085759934786e-13
+    },
+    {
+      "diameter_mm": 20.0,
+      "dt_s": 0.2,
+      "time_s": 10,
+      "numerical_vz_ms": -21.09856075726878,
+      "analytic_vz_ms": -21.09856108074131,
+      "relative_velocity_error": 1.5331497219223045e-08
+    },
+    {
+      "diameter_mm": 20.0,
+      "dt_s": 0.1,
+      "time_s": 10,
+      "numerical_vz_ms": -21.09856106195173,
+      "analytic_vz_ms": -21.09856108074131,
+      "relative_velocity_error": 8.905620540509957e-10
+    },
+    {
+      "diameter_mm": 20.0,
+      "dt_s": 0.05,
+      "time_s": 10,
+      "numerical_vz_ms": -21.09856107960905,
+      "analytic_vz_ms": -21.09856108074131,
+      "relative_velocity_error": 5.366529514698893e-11
+    },
+    {
+      "diameter_mm": 20.0,
+      "dt_s": 0.025,
+      "time_s": 10,
+      "numerical_vz_ms": -21.09856108067183,
+      "analytic_vz_ms": -21.09856108074131,
+      "relative_velocity_error": 3.2931355437183287e-12
+    }
+  ],
+  "legacy_comoving_probe": [
+    {
+      "air_vertical_ms": 0.0,
+      "particle_initial_vertical_ms": 0.0,
+      "initial_vz_acceleration_estimate_ms2": -9.80999999916852,
+      "gravity_only_reference_ms2": -9.81
+    },
+    {
+      "air_vertical_ms": 5.0,
+      "particle_initial_vertical_ms": 5.0,
+      "initial_vz_acceleration_estimate_ms2": -5.833281464084905,
+      "gravity_only_reference_ms2": -9.81
+    }
+  ],
+  "dry_void_fraction_for_500kgm3_ice900": 0.4444444444444444
+}

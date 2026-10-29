@@ -210,7 +210,7 @@ def _simulate_coupled(
     eps, mu, L_f = 1e-12, 1.8e-5, 3.34e5
     m_scale, C_lift, erosion_factor = 1e-4, 0.2, 0.25
     rho_ice, rho_water = pms["rho_ice"], pms["rho_water"]
-    m0 = (4.0/3.0) * np.pi * (D0_mm * 1e-3 / 2.0)**3 * rho_ice
+    m0 = (4.0/3.0) * np.pi * (D0_mm * 1e-3 / 2.0)**3 * pms["rho_init"]
     p0 = np.clip(
         (rho_water - pms["rho_init"]) / (rho_water - rho_ice),
         pms["p_min"], pms["p_max"],
@@ -222,7 +222,7 @@ def _simulate_coupled(
     def radius_from(state_local):
         mass = max(float(state_local[0]), eps)
         porosity = float(np.clip(state_local[4], pms["p_min"], pms["p_max"]))
-        rho_eff = (1.0 - porosity) * rho_ice + porosity * rho_water
+        rho_eff = max(float(state_local[5]), 1.0)
         return (3.0 * mass / (4.0 * np.pi * rho_eff + eps))**(1.0/3.0)
 
     def derivatives(s, _time):
@@ -244,7 +244,7 @@ def _simulate_coupled(
         temp_air = float(profile.temperature(z_env))
         rho_air = float(profile.air_density(z_env))
         wind = float(wind_profile.velocity(z_env))
-        rho_eff = (1.0 - p_safe) * rho_ice + p_safe * rho_water
+        rho_eff = max(float(density), 1.0)
         radius = (3.0 * m_safe / (4.0 * np.pi * rho_eff + eps))**(1.0/3.0)
         area = np.pi * radius**2
         surface = 4.0 * np.pi * radius**2
@@ -420,6 +420,7 @@ def simulate_trajectory_2d(
     updraft_center_x_m: float = 0.0,
     updraft_radius_m: float | None = None,
     storm_motion_ms: float = 0.0,
+    physics_mode: str = "legacy",
     **trajectory_kwargs,
 ):
     """Simula una trayectoria 2D; un radio activa acoplamiento completo."""
@@ -429,7 +430,17 @@ def simulate_trajectory_2d(
         raise ValueError(
             "storm_motion_ms debe ser finito."
         )
-    if updraft_radius_m is None:
+    if physics_mode not in ("legacy", "mechanics_reference"):
+        raise ValueError("physics_mode must be legacy or mechanics_reference")
+    if physics_mode == "mechanics_reference":
+        from hailcast2d.mechanics_reference import simulate_mechanics
+        result = simulate_mechanics(
+            profile, wind_profile, D0_mm, z0, T0_K, x0=x0, vx0=vx0,
+            max_substep_s=max_horizontal_substep_s,
+            updraft_radius_m=updraft_radius_m,
+            updraft_center_x_m=updraft_center_x_m,
+            storm_motion_ms=storm_motion_ms, **trajectory_kwargs)
+    elif updraft_radius_m is None:
         result = _simulate_one_way(
             profile, wind_profile, D0_mm, z0, T0_K, x0, vx0,
             max_horizontal_substep_s, trajectory_kwargs,
@@ -451,6 +462,7 @@ def simulate_trajectory_2d(
         )
     result["storm_motion_ms"] = float(storm_motion_ms)
     result["impact"] = _calculate_impact(result, profile)
+    result["physics_mode"] = physics_mode
     result["model_dimension"] = "2D_xz"
     result["max_horizontal_substep_s"] = float(max_horizontal_substep_s)
     return result
