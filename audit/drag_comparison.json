@@ -1,0 +1,130 @@
+[
+  {
+    "diameter_mm": 0.9,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.1,
+    "velocity_error_ms": 3.2862601528904634e-13,
+    "height_error_m": 7.469292086170753e-05,
+    "final_re": 97.92121047652338
+  },
+  {
+    "diameter_mm": 0.9,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.05,
+    "velocity_error_ms": 1.7763568394002505e-14,
+    "height_error_m": 8.814028660708573e-06,
+    "final_re": 97.9212104765296
+  },
+  {
+    "diameter_mm": 0.9,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.1,
+    "velocity_error_ms": 1.7763568394002505e-15,
+    "height_error_m": 0.00013406153630057815,
+    "final_re": 197.41332869022295
+  },
+  {
+    "diameter_mm": 0.9,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.05,
+    "velocity_error_ms": 1.7763568394002505e-15,
+    "height_error_m": 1.4514637769025285e-05,
+    "final_re": 197.41332869022295
+  },
+  {
+    "diameter_mm": 5.0,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.1,
+    "velocity_error_ms": 8.876666868218308e-08,
+    "height_error_m": 2.048649184871465e-05,
+    "final_re": 2130.107459427036
+  },
+  {
+    "diameter_mm": 5.0,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.05,
+    "velocity_error_ms": 6.787310269373847e-09,
+    "height_error_m": 2.9113043638062663e-06,
+    "final_re": 2130.1074685358535
+  },
+  {
+    "diameter_mm": 5.0,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.1,
+    "velocity_error_ms": 2.328958359498756e-09,
+    "height_error_m": 3.025133173650829e-05,
+    "final_re": 3763.108199153783
+  },
+  {
+    "diameter_mm": 5.0,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.05,
+    "velocity_error_ms": 1.4298251471700496e-10,
+    "height_error_m": 3.951730832341127e-06,
+    "final_re": 3763.108199882442
+  },
+  {
+    "diameter_mm": 10.0,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.1,
+    "velocity_error_ms": 1.9387519856195468e-07,
+    "height_error_m": 1.1271514267718885e-05,
+    "final_re": 6046.13512395757
+  },
+  {
+    "diameter_mm": 10.0,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.05,
+    "velocity_error_ms": 1.5651007601036326e-08,
+    "height_error_m": 1.6323901945725083e-06,
+    "final_re": 6046.135163562945
+  },
+  {
+    "diameter_mm": 10.0,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.1,
+    "velocity_error_ms": 1.7680941155617802e-08,
+    "height_error_m": 1.6283684999507386e-05,
+    "final_re": 10207.271776185955
+  },
+  {
+    "diameter_mm": 10.0,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.05,
+    "velocity_error_ms": 1.108915625991358e-09,
+    "height_error_m": 2.136756847903598e-06,
+    "final_re": 10207.271787233974
+  },
+  {
+    "diameter_mm": 50.0,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.1,
+    "velocity_error_ms": 1.6350562503930632e-07,
+    "height_error_m": 2.0591605789377354e-06,
+    "final_re": 54468.44699090869
+  },
+  {
+    "diameter_mm": 50.0,
+    "air_density_kgm3": 0.4,
+    "step_s": 0.05,
+    "velocity_error_ms": 1.8301975046597363e-08,
+    "height_error_m": 3.3138621802208945e-07,
+    "final_re": 54468.44715224609
+  },
+  {
+    "diameter_mm": 50.0,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.1,
+    "velocity_error_ms": 1.7598549817421372e-07,
+    "height_error_m": 2.258363565488253e-06,
+    "final_re": 103757.8653914749
+  },
+  {
+    "diameter_mm": 50.0,
+    "air_density_kgm3": 1.2,
+    "step_s": 0.05,
+    "velocity_error_ms": 1.3206232551965513e-08,
+    "height_error_m": 4.2410738387843594e-07,
+    "final_re": 103757.86593407246
+  }
+]

@@ -21,9 +21,15 @@ def _vector(name, value):
     return value
 
 
-def sphere_drag_coefficient(reynolds):
+def sphere_drag_coefficient(reynolds, law="legacy_piecewise"):
     """Legacy sphere correlation; zero slip is handled before evaluating Cd."""
     re = _positive('reynolds', reynolds)
+    if law == "clift_gauvin":
+        if re > 2e5:
+            raise ValueError("Experimental smooth-sphere law restricted to Re <= 2e5")
+        return 24/re*(1+0.15*re**0.687) + 0.42/(1+42500/re**1.16)
+    if law != "legacy_piecewise":
+        raise ValueError("Unknown drag law")
     if re < 1:
         return 24/re
     if re < 1000:
@@ -32,7 +38,7 @@ def sphere_drag_coefficient(reynolds):
 
 
 def drag_acceleration(velocity, air_velocity, mass_kg, diameter_m,
-                      air_density_kgm3, viscosity_pas=1.8e-5, cd=None):
+                      air_density_kgm3, viscosity_pas=1.8e-5, cd=None, drag_law="legacy_piecewise"):
     v, u = _vector('velocity', velocity), _vector('air_velocity', air_velocity)
     mass = _positive('mass', mass_kg)
     diameter = _positive('diameter', diameter_m)
@@ -40,11 +46,13 @@ def drag_acceleration(velocity, air_velocity, mass_kg, diameter_m,
     mu = _positive('viscosity', viscosity_pas)
     if cd is not None:
         cd = _positive('cd', cd)
+    if drag_law not in ("legacy_piecewise", "clift_gauvin"):
+        raise ValueError("Unknown drag law")
     slip = v-u
     speed = float(np.linalg.norm(slip))
     if speed == 0:
         return np.zeros(2)
-    coefficient = sphere_drag_coefficient(rho*speed*diameter/mu) if cd is None else cd
+    coefficient = sphere_drag_coefficient(rho*speed*diameter/mu, law=drag_law) if cd is None else cd
     area = np.pi*diameter**2/4
     return -.5*coefficient*rho*area/mass * speed*slip
 

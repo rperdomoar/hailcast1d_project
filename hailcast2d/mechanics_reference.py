@@ -6,7 +6,7 @@ from .particle_physics import particle_acceleration
 def simulate_mechanics(profile, wind_profile, D0_mm, z0, T0_K,
                        x0=0., vx0=0., v0=0., rho_init=900., dt=.1,
                        t_max=60., max_substep_s=.05, updraft_radius_m=None,
-                       updraft_center_x_m=0., storm_motion_ms=0., cd=None):
+                       updraft_center_x_m=0., storm_motion_ms=0., cd=None, drag_law="legacy_piecewise"):
     scalars=[D0_mm,z0,T0_K,x0,vx0,v0,rho_init,dt,t_max,max_substep_s,
              updraft_center_x_m,storm_motion_ms,profile.z_min]
     if not np.all(np.isfinite(scalars)):
@@ -24,7 +24,7 @@ def simulate_mechanics(profile, wind_profile, D0_mm, z0, T0_K,
         return np.array([wind_profile.velocity(z),profile.w(z)*factor]),profile.air_density(z),factor
     def rhs(s,t):
         u,rho,_=air(s,t)
-        return np.r_[s[2:],particle_acceleration(s[2:],u,mass,diameter,rho,cd=cd)]
+        return np.r_[s[2:],particle_acceleration(s[2:],u,mass,diameter,rho,cd=cd,drag_law=drag_law)]
     def step(s,t,h):
         a=rhs(s,t);b=rhs(s+h*a/2,t+h/2);c=rhs(s+h*b/2,t+h/2);d=rhs(s+h*c,t+h)
         out=s+h*(a+2*b+2*c+d)/6
@@ -58,4 +58,5 @@ def simulate_mechanics(profile, wind_profile, D0_mm, z0, T0_K,
         'updraft_factor':np.array([e[2] for e in env]),
         'D0_init':D0_mm,'coupling':'experimental_fixed_mass_mechanics',
         'physics_scope':'fixed_mass_fixed_density_no_growth_no_heat_no_melting',
+        'drag_law':drag_law,'cd_override':cd,
         'actual_max_step_s':max(steps,default=0.),'event_refined':impacted}
