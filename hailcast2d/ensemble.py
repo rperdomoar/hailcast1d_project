@@ -39,6 +39,8 @@ def run_ensemble(
     vx0_std_ms: float = 0.0,
     wind_std_ms: float = 0.0,
     seed: int | None = None,
+    diameter_distribution: dict | None = None,
+    diameters_mm=None,
     **trajectory_kwargs,
 ):
     """
@@ -119,6 +121,18 @@ def run_ensemble(
     vx0_std_ms = _validate_non_negative("vx0_std_ms", vx0_std_ms)
     wind_std_ms = _validate_non_negative("wind_std_ms", wind_std_ms)
 
+    if diameter_distribution is not None and diameters_mm is not None:
+        raise ValueError("Choose a distribution or explicit diameters, not both")
+    if (diameter_distribution is not None or diameters_mm is not None) and diameter_std_mm != 0:
+        raise ValueError("Do not combine explicit size sampling with legacy diameter_std_mm")
+    sampled_sizes = None
+    if diameter_distribution is not None:
+        from hailcast2d.size_distributions import sample_diameters
+        sampled_sizes = sample_diameters(n_members, diameter_distribution, np.random.SeedSequence(seed).spawn(1)[0])
+    elif diameters_mm is not None:
+        sampled_sizes = np.asarray(diameters_mm, dtype=float)
+        if sampled_sizes.shape != (n_members,) or not np.all(np.isfinite(sampled_sizes)) or np.any(sampled_sizes <= 0):
+            raise ValueError("diameters_mm must contain n_members finite positive values")
     rng = np.random.default_rng(seed)
 
     trajectories = []
@@ -126,7 +140,7 @@ def run_ensemble(
     initial_conditions = []
 
     for member_id in range(n_members):
-        sampled_diameter = float(
+        sampled_diameter = float(sampled_sizes[member_id]) if sampled_sizes is not None else float(
             rng.normal(D0_mm, diameter_std_mm)
             if diameter_std_mm > 0.0
             else D0_mm
@@ -195,6 +209,11 @@ def run_ensemble(
         "n_impacted": n_impacted,
         "impact_fraction": n_impacted / n_members,
         "seed": seed,
+        "diameter_sampling": {
+            "specification": dict(diameter_distribution) if diameter_distribution is not None else None,
+            "method": "specified_distribution" if diameter_distribution is not None else ("explicit_samples" if diameters_mm is not None else "legacy_normal_clipped"),
+            "weighting": "equal_weight_number_samples_not_physical_concentration",
+        },
         "perturbation_std": {
             "diameter_mm": diameter_std_mm,
             "x0_m": x0_std_m,
