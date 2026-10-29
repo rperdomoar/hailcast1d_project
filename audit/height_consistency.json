@@ -1,0 +1,401 @@
+{
+  "scope": "Uniform-air mechanics benchmark; not a cloud/sounding simulation",
+  "rows": [
+    {
+      "diameter_mm": 0.9,
+      "height_m": 40.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 12.41685079399319,
+          "speed_ms": 3.2902221448370494,
+          "terminal_speed_ms": 3.2902221448369886,
+          "kinetic_energy_J": 1.859469702477795e-06,
+          "effective_potential_J": 0.00013462267412975545,
+          "impact_diameter_mm": 0.9,
+          "impacted": true,
+          "t_max_s": 32.15723383989982
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 12.416814460009705,
+          "speed_ms": 3.2902221448370494,
+          "terminal_speed_ms": 3.2902221448369886,
+          "kinetic_energy_J": 1.859469702477795e-06,
+          "effective_potential_J": 0.00013462267412975545,
+          "impact_diameter_mm": 0.9,
+          "impacted": true,
+          "t_max_s": 32.15723383989982
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 2.926192027846293e-06,
+        "speed_ms": 0.0,
+        "kinetic_energy_J": 0.0
+      }
+    },
+    {
+      "diameter_mm": 0.9,
+      "height_m": 500.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 152.22503995283589,
+          "speed_ms": 3.2902221448370494,
+          "terminal_speed_ms": 3.2902221448369886,
+          "kinetic_energy_J": 1.859469702477795e-06,
+          "effective_potential_J": 0.001682783426621943,
+          "impact_diameter_mm": 0.9,
+          "impacted": true,
+          "t_max_s": 171.96542299874773
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 152.22500361884562,
+          "speed_ms": 3.2902221448370494,
+          "terminal_speed_ms": 3.2902221448369886,
+          "kinetic_energy_J": 1.859469702477795e-06,
+          "effective_potential_J": 0.001682783426621943,
+          "impact_diameter_mm": 0.9,
+          "impacted": true,
+          "t_max_s": 171.96542299874773
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 2.3868608574471535e-07,
+        "speed_ms": 0.0,
+        "kinetic_energy_J": 0.0
+      }
+    },
+    {
+      "diameter_mm": 0.9,
+      "height_m": 1000.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 304.1904629515635,
+          "speed_ms": 3.2902221448370494,
+          "terminal_speed_ms": 3.2902221448369886,
+          "kinetic_energy_J": 1.859469702477795e-06,
+          "effective_potential_J": 0.003365566853243886,
+          "impact_diameter_mm": 0.9,
+          "impacted": true,
+          "t_max_s": 323.93084599749545
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 304.1904266176008,
+          "speed_ms": 3.2902221448370494,
+          "terminal_speed_ms": 3.2902221448369886,
+          "kinetic_energy_J": 1.859469702477795e-06,
+          "effective_potential_J": 0.003365566853243886,
+          "impact_diameter_mm": 0.9,
+          "impacted": true,
+          "t_max_s": 323.93084599749545
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 1.1944479361047264e-07,
+        "speed_ms": 0.0,
+        "kinetic_energy_J": 0.0
+      }
+    },
+    {
+      "diameter_mm": 3.0,
+      "height_m": 40.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 5.377037788939376,
+          "speed_ms": 8.420226101561305,
+          "terminal_speed_ms": 8.420400445863983,
+          "kinetic_energy_J": 0.00045104763196065345,
+          "effective_potential_J": 0.0049860249677687206,
+          "impact_diameter_mm": 3.0,
+          "impacted": true,
+          "t_max_s": 24.750367901997773
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 5.377032973979784,
+          "speed_ms": 8.420226131493461,
+          "terminal_speed_ms": 8.420400445863983,
+          "kinetic_energy_J": 0.0004510476351674149,
+          "effective_potential_J": 0.0049860249677687206,
+          "impact_diameter_mm": 3.0,
+          "impacted": true,
+          "t_max_s": 24.750367901997773
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 8.954677449860984e-07,
+        "speed_ms": 3.5547924535107624e-09,
+        "kinetic_energy_J": 7.1095849135393035e-09
+      }
+    },
+    {
+      "diameter_mm": 3.0,
+      "height_m": 500.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 60.00627844205405,
+          "speed_ms": 8.42040044586398,
+          "terminal_speed_ms": 8.420400445863983,
+          "kinetic_energy_J": 0.00045106631041370946,
+          "effective_potential_J": 0.062325312097109,
+          "impact_diameter_mm": 3.0,
+          "impacted": true,
+          "t_max_s": 79.37959877497215
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 60.00627362541413,
+          "speed_ms": 8.420400445863976,
+          "terminal_speed_ms": 8.420400445863983,
+          "kinetic_energy_J": 0.0004510663104137091,
+          "effective_potential_J": 0.062325312097109,
+          "impact_diameter_mm": 3.0,
+          "impacted": true,
+          "t_max_s": 79.37959877497215
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 8.026893896843404e-08,
+        "speed_ms": 4.219174256190585e-16,
+        "kinetic_energy_J": 8.41274889321447e-16
+      }
+    },
+    {
+      "diameter_mm": 3.0,
+      "height_m": 1000.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 119.3858772170242,
+          "speed_ms": 8.42040044586398,
+          "terminal_speed_ms": 8.420400445863983,
+          "kinetic_energy_J": 0.00045106631041370946,
+          "effective_potential_J": 0.124650624194218,
+          "impact_diameter_mm": 3.0,
+          "impacted": true,
+          "t_max_s": 138.7591975499443
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 119.38587240038396,
+          "speed_ms": 8.420400445863976,
+          "terminal_speed_ms": 8.420400445863983,
+          "kinetic_energy_J": 0.0004510663104137091,
+          "effective_potential_J": 0.124650624194218,
+          "impact_diameter_mm": 3.0,
+          "impacted": true,
+          "t_max_s": 138.7591975499443
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 4.034514423999542e-08,
+        "speed_ms": 4.219174256190585e-16,
+        "kinetic_energy_J": 8.41274889321447e-16
+      }
+    },
+    {
+      "diameter_mm": 5.0,
+      "height_m": 40.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 4.351549611299015,
+          "speed_ms": 11.276882158505305,
+          "terminal_speed_ms": 11.289346968222954,
+          "kinetic_energy_J": 0.003745408859118099,
+          "effective_potential_J": 0.023083448924855192,
+          "impact_diameter_mm": 5.0,
+          "impacted": true,
+          "t_max_s": 23.543163312509684
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 4.35154730788535,
+          "speed_ms": 11.276882672562468,
+          "terminal_speed_ms": 11.289346968222954,
+          "kinetic_energy_J": 0.0037454092005873582,
+          "effective_potential_J": 0.023083448924855192,
+          "impact_diameter_mm": 5.0,
+          "impacted": true,
+          "t_max_s": 23.543163312509684
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 5.293320977954225e-07,
+        "speed_ms": 4.5585041361636175e-08,
+        "kinetic_energy_J": 9.117008071242231e-08
+      }
+    },
+    {
+      "diameter_mm": 5.0,
+      "height_m": 500.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 45.09856493411726,
+          "speed_ms": 11.289346968222963,
+          "terminal_speed_ms": 11.289346968222954,
+          "kinetic_energy_J": 0.003753693349454369,
+          "effective_potential_J": 0.2885431115606899,
+          "impact_diameter_mm": 5.0,
+          "impacted": true,
+          "t_max_s": 64.28954140637106
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 45.09856260441041,
+          "speed_ms": 11.289346968222958,
+          "terminal_speed_ms": 11.289346968222954,
+          "kinetic_energy_J": 0.0037536933494543654,
+          "effective_potential_J": 0.2885431115606899,
+          "impact_diameter_mm": 5.0,
+          "impacted": true,
+          "t_max_s": 64.28954140637106
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 5.165811763797101e-08,
+        "speed_ms": 4.720441787466467e-16,
+        "kinetic_energy_J": 9.2427554117012e-16
+      }
+    },
+    {
+      "diameter_mm": 5.0,
+      "height_m": 1000.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 89.38810634048752,
+          "speed_ms": 11.289346968222963,
+          "terminal_speed_ms": 11.289346968222954,
+          "kinetic_energy_J": 0.003753693349454369,
+          "effective_potential_J": 0.5770862231213798,
+          "impact_diameter_mm": 5.0,
+          "impacted": true,
+          "t_max_s": 108.5790828127421
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 89.38810401077697,
+          "speed_ms": 11.289346968222958,
+          "terminal_speed_ms": 11.289346968222954,
+          "kinetic_energy_J": 0.0037536933494543654,
+          "effective_potential_J": 0.5770862231213798,
+          "impact_diameter_mm": 5.0,
+          "impacted": true,
+          "t_max_s": 108.5790828127421
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 2.6062870222292754e-08,
+        "speed_ms": 4.720441787466467e-16,
+        "kinetic_energy_J": 9.2427554117012e-16
+      }
+    },
+    {
+      "diameter_mm": 10.0,
+      "height_m": 40.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 3.661584617016253,
+          "speed_ms": 15.083449205997152,
+          "terminal_speed_ms": 15.311520165624554,
+          "kinetic_energy_J": 0.053605884507118166,
+          "effective_potential_J": 0.18466759139884154,
+          "impact_diameter_mm": 10.0,
+          "impacted": true,
+          "t_max_s": 22.612412064074658
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 3.6615837760905783,
+          "speed_ms": 15.083450936290209,
+          "terminal_speed_ms": 15.311520165624554,
+          "kinetic_energy_J": 0.0536058968058827,
+          "effective_potential_J": 0.18466759139884154,
+          "impact_diameter_mm": 10.0,
+          "impacted": true,
+          "t_max_s": 22.612412064074658
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 2.296617328171265e-07,
+        "speed_ms": 1.147146673918773e-07,
+        "kinetic_energy_J": 2.2942932153723055e-07
+      }
+    },
+    {
+      "diameter_mm": 10.0,
+      "height_m": 500.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 33.71527059397752,
+          "speed_ms": 15.311520165624549,
+          "terminal_speed_ms": 15.311520165624554,
+          "kinetic_energy_J": 0.0552392479683213,
+          "effective_potential_J": 2.308344892485519,
+          "impact_diameter_mm": 10.0,
+          "impacted": true,
+          "t_max_s": 52.655150800933235
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 33.71526966924511,
+          "speed_ms": 15.311520165624541,
+          "terminal_speed_ms": 15.311520165624554,
+          "kinetic_energy_J": 0.05523924796832125,
+          "effective_potential_J": 2.308344892485519,
+          "impact_diameter_mm": 10.0,
+          "impacted": true,
+          "t_max_s": 52.655150800933235
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 2.7427703251536043e-08,
+        "speed_ms": 4.640576037350749e-16,
+        "kinetic_energy_J": 1.0049222839364597e-15
+      }
+    },
+    {
+      "diameter_mm": 10.0,
+      "height_m": 1000.0,
+      "runs": [
+        {
+          "step_s": 0.1,
+          "flight_time_s": 66.3704213949111,
+          "speed_ms": 15.311520165624549,
+          "terminal_speed_ms": 15.311520165624554,
+          "kinetic_energy_J": 0.0552392479683213,
+          "effective_potential_J": 4.616689784971038,
+          "impact_diameter_mm": 10.0,
+          "impacted": true,
+          "t_max_s": 85.31030160186647
+        },
+        {
+          "step_s": 0.05,
+          "flight_time_s": 66.37042047017677,
+          "speed_ms": 15.311520165624541,
+          "terminal_speed_ms": 15.311520165624554,
+          "kinetic_energy_J": 0.05523924796832125,
+          "effective_potential_J": 4.616689784971038,
+          "impact_diameter_mm": 10.0,
+          "impacted": true,
+          "t_max_s": 85.31030160186647
+        }
+      ],
+      "relative_step_differences": {
+        "flight_time_s": 1.393292871362639e-08,
+        "speed_ms": 4.640576037350749e-16,
+        "kinetic_energy_J": 1.0049222839364597e-15
+      }
+    }
+  ]
+}
