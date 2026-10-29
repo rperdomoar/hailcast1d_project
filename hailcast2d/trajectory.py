@@ -210,7 +210,7 @@ def _simulate_coupled(
     eps, mu, L_f = 1e-12, 1.8e-5, 3.34e5
     m_scale, C_lift, erosion_factor = 1e-4, 0.2, 0.25
     rho_ice, rho_water = pms["rho_ice"], pms["rho_water"]
-    m0 = (4.0/3.0) * np.pi * (D0_mm * 1e-3 / 2.0)**3 * rho_ice
+    m0 = (4.0/3.0) * np.pi * (D0_mm * 1e-3 / 2.0)**3 * pms["rho_init"]
     p0 = np.clip(
         (rho_water - pms["rho_init"]) / (rho_water - rho_ice),
         pms["p_min"], pms["p_max"],
@@ -222,7 +222,7 @@ def _simulate_coupled(
     def radius_from(state_local):
         mass = max(float(state_local[0]), eps)
         porosity = float(np.clip(state_local[4], pms["p_min"], pms["p_max"]))
-        rho_eff = (1.0 - porosity) * rho_ice + porosity * rho_water
+        rho_eff = max(float(state_local[5]), 1.0)
         return (3.0 * mass / (4.0 * np.pi * rho_eff + eps))**(1.0/3.0)
 
     def derivatives(s, _time):
@@ -244,7 +244,7 @@ def _simulate_coupled(
         temp_air = float(profile.temperature(z_env))
         rho_air = float(profile.air_density(z_env))
         wind = float(wind_profile.velocity(z_env))
-        rho_eff = (1.0 - p_safe) * rho_ice + p_safe * rho_water
+        rho_eff = max(float(density), 1.0)
         radius = (3.0 * m_safe / (4.0 * np.pi * rho_eff + eps))**(1.0/3.0)
         area = np.pi * radius**2
         surface = 4.0 * np.pi * radius**2

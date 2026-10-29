@@ -39,7 +39,7 @@ def simulate_trajectory(profile: CloudProfile,
     """
 
     # --- Inicialización ---
-    m0 = (4/3) * np.pi * ((D0_mm * 1e-3 / 2.0) ** 3) * rho_ice
+    m0 = (4/3) * np.pi * ((D0_mm * 1e-3 / 2.0) ** 3) * rho_init
     p0 = np.clip((rho_water - rho_init) / (rho_water - rho_ice), p_min, p_max)
 
     times = [0.0]
@@ -91,7 +91,7 @@ def simulate_trajectory(profile: CloudProfile,
         rho_air = profile.air_density(z_s)
 
         # --- Radio y áreas ---
-        rho_eff_local = (1.0 - p_s) * rho_ice + p_s * rho_water
+        rho_eff_local = max(float(rho_s), 1.0)
         r_s = (3.0 * m_s / (4.0 * np.pi * (rho_eff_local + eps))) ** (1/3)
         A_proj = np.pi * r_s**2
         A_surf = 4.0 * np.pi * r_s**2
@@ -186,7 +186,7 @@ def simulate_trajectory(profile: CloudProfile,
         t += dt
         times.append(t)
         masses.append(m)
-        r_now = (3.0 * m / (4.0 * np.pi * ((1.0 - p) * rho_ice + p * rho_water) + eps)) ** (1/3)
+        r_now = (3.0 * m / (4.0 * np.pi * rho_current + eps)) ** (1/3)
         radii.append(r_now)
         heights.append(z)
         velocities.append(v)
